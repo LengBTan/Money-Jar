@@ -37,7 +37,6 @@ void setup(){
 
 void loop(){
   lightVal = analogRead(sensorPin);
-  unsigned long currentMillis = millis();
 
   sum -= readings[readingIndex];//subtract last reading to the sum
   readings[readingIndex] = lightVal;
@@ -62,10 +61,10 @@ void loop(){
     lcd.print("Thank you!");
     digitalWrite(LCDBacklight, HIGH);
     playTune();
-    lastDisplayMillis = currentMillis;//store last time LCD was displayed
+    lastDisplayMillis = millis();//store last time LCD was displayed
   }
 
-  if(currentMillis - lastDisplayMillis > 5000){
+  if(millis() - lastDisplayMillis > 5000){
     digitalWrite(LCDBacklight, LOW);
     lcd.clear();
   }
