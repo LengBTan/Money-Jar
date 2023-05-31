@@ -23,5 +23,23 @@ void setup(){
 }
 
 void loop(){
+  lightVal = analogRead(sensorPin);
+
+  //print out values to serial monitor
+  Serial.print("Val:");
+  Serial.print(lightVal);
+  Serial.print(",");
+  Serial.print("Cal:");
+  Serial.println(lightCal);
+
+  if(lightVal < lightCal - 7){//if the current light value is less than the calibrated value
+    //display message on LCD display
+    lcd.setCursor(1, 0);
+    lcd.print("Thank you!");
+    digitalWrite(LCDBacklight, HIGH);
+    delay(5000);
+  }
   
+  digitalWrite(LCDBacklight, LOW);
+  lcd.clear();
 }
