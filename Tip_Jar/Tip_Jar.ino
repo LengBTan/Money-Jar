@@ -30,8 +30,6 @@ void setup(){
   pinMode(piezo, OUTPUT);//set piezo pin as a output
   lcd.begin(16, 2);//initialize LCD, 16 columns and 2 rows
   digitalWrite(LCDBacklight, LOW);//set LCD backlight to an off state
-  lightCal = analogRead(sensorPin);
-
   for(int i = 0; i < numReadings; i++){
     readings[i] = 0;//initialize all elements in array to 0
   }
