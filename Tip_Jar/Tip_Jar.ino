@@ -37,6 +37,13 @@ void loop(){
     lcd.setCursor(1, 0);
     lcd.print("Thank you!");
     digitalWrite(LCDBacklight, HIGH);
+    
+    for (int i = 0; i <2; i++){
+      tone(piezo, tune[i]);
+      delay(tuneLength[i]);
+      noTone(piezo);
+    }
+
     delay(5000);
   }
   
