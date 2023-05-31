@@ -8,6 +8,9 @@ const int piezo = 9; // pin variable for piezo
 const int sensorPin = 0;// pin variable for photoresitor
 const int LCDBacklight = 8;// pin for the LCD backlight
 
+const int tune[3]= {1976, 2637};//use piezo to play 1976hz and 2637hz pitched notes
+const int tuneLength[3]= {100, 400};//play the notes for 100ms and 400ms respectively
+
 int lightCal;//calibrated light value
 int lightVal;//current light value
 
