@@ -14,6 +14,7 @@ const int tuneLength[numNotes]= {100, 400};//play the notes for 100ms and 400ms 
 
 int lightCal;//calibrated light value
 int lightVal;//current light value
+int sensorSensitivity = 7;
 
 unsigned long lastDelay = 0;//stores last time the LCD was displayed
 
@@ -57,7 +58,7 @@ void loop(){
   Serial.print("Cal:");
   Serial.println(lightCal);
 
-  if(lightVal < lightCal - 7){
+  if(lightVal < lightCal - sensorSensitivity){
     //display message on LCD display
     lcd.setCursor(1, 0);
     lcd.print("Thank you!");
