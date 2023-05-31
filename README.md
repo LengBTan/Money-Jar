@@ -11,6 +11,7 @@ It plays a tune when a coin is dropped in the jar, and displays a message on a 1
 - 1x Piezo buzzer
 - 1x BC547 NPN Transistor
 - 1x White LED
+- 4x M3x10 Bolt
 
 ## Schematic
 <img src="STL & schematics\Tip Jar.png" width=700px height = auto>
