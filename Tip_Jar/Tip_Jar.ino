@@ -16,7 +16,7 @@ int lightCal;//calibrated light value
 int lightVal;//current light value
 int sensorSensitivity = 7;
 
-unsigned long lastDelay = 0;//stores last time the LCD was displayed
+unsigned long lastDisplayMillis = 0;//stores last time the LCD was displayed
 
 //variables used to average out readings
 const int numReadings = 100;
@@ -62,10 +62,10 @@ void loop(){
     lcd.print("Thank you!");
     digitalWrite(LCDBacklight, HIGH);
     playTune();
-    lastDelay = currentMillis;//store last time LCD was displayed
+    lastDisplayMillis = currentMillis;//store last time LCD was displayed
   }
 
-  if(currentMillis - lastDelay > 5000){
+  if(currentMillis - lastDisplayMillis > 5000){
     digitalWrite(LCDBacklight, LOW);
     lcd.clear();
   }
