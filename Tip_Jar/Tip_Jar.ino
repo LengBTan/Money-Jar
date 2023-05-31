@@ -14,6 +14,8 @@ const int tuneLength[3]= {100, 400};//play the notes for 100ms and 400ms respect
 int lightCal;//calibrated light value
 int lightVal;//current light value
 
+unsigned long lastDelay = 0;//stores last time the LCD was displayed
+
 void setup(){
   Serial.begin(9600);
   pinMode(piezo, OUTPUT);//set piezo pin as a output
@@ -24,6 +26,7 @@ void setup(){
 
 void loop(){
   lightVal = analogRead(sensorPin);
+  unsigned long currentMillis = millis();
 
   //print out values to serial monitor
   Serial.print("Val:");
@@ -32,21 +35,24 @@ void loop(){
   Serial.print("Cal:");
   Serial.println(lightCal);
 
-  if(lightVal < lightCal - 7){//if the current light value is less than the calibrated value
+  if(lightVal < lightCal - 7){
     //display message on LCD display
     lcd.setCursor(1, 0);
     lcd.print("Thank you!");
     digitalWrite(LCDBacklight, HIGH);
-    
+
+    //play tune
     for (int i = 0; i <2; i++){
       tone(piezo, tune[i]);
       delay(tuneLength[i]);
       noTone(piezo);
     }
+    lastDelay = currentMillis;//store last time LCD was displayed
+  }
 
-    delay(5000);
+  if(currentMillis - lastDelay > 5000){
+    digitalWrite(LCDBacklight, LOW);
+    lcd.clear();
   }
   
-  digitalWrite(LCDBacklight, LOW);
-  lcd.clear();
 }
