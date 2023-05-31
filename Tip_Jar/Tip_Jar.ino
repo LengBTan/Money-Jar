@@ -10,6 +10,7 @@ void setup(){
 const int LCDBacklight = 8;// pin for the LCD backlight
 
 int lightCal;
+int lightCal;//calibrated light value
 int lightVal;//current value
 
 void setup(){
