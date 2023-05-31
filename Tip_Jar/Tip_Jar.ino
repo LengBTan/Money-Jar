@@ -9,6 +9,9 @@ const int sensorPin = 0;// pin variable for photoresitor
 void setup(){
 const int LCDBacklight = 8;// pin for the LCD backlight
 
+int lightCal;
+int lightVal;//current value
+
 void setup(){
   Serial.begin(9600);
   pinMode(piezo, OUTPUT);//set piezo pin as a output
