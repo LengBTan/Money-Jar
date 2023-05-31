@@ -8,8 +8,9 @@ const int piezo = 9; // pin variable for piezo
 const int sensorPin = 0;// pin variable for photoresitor
 const int LCDBacklight = 8;// pin for the LCD backlight
 
-const int tune[3]= {1976, 2637};//use piezo to play 1976hz and 2637hz pitched notes
-const int tuneLength[3]= {100, 400};//play the notes for 100ms and 400ms respectively
+const int numNotes = 2;//stores number of notes/tones being played
+const int tune[numNotes]= {1976, 2637};//use piezo to play 1976hz and 2637hz pitched notes
+const int tuneLength[numNotes]= {100, 400};//play the notes for 100ms and 400ms respectively
 
 int lightCal;//calibrated light value
 int lightVal;//current light value
@@ -40,13 +41,7 @@ void loop(){
     lcd.setCursor(1, 0);
     lcd.print("Thank you!");
     digitalWrite(LCDBacklight, HIGH);
-
-    //play tune
-    for (int i = 0; i <2; i++){
-      tone(piezo, tune[i]);
-      delay(tuneLength[i]);
-      noTone(piezo);
-    }
+    playTune();
     lastDelay = currentMillis;//store last time LCD was displayed
   }
 
@@ -55,4 +50,12 @@ void loop(){
     lcd.clear();
   }
   
+}
+
+void playTune(){ 
+  for (int i = 0; i < numNotes; i++){
+    tone(piezo, tune[i]);
+    delay(tuneLength[i]);
+    noTone(piezo);
+  }
 }
