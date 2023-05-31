@@ -6,10 +6,8 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 const int piezo = 9; // pin variable for piezo
 const int sensorPin = 0;// pin variable for photoresitor
-void setup(){
 const int LCDBacklight = 8;// pin for the LCD backlight
 
-int lightCal;
 int lightCal;//calibrated light value
 int lightVal;//current light value
 
