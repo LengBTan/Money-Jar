@@ -17,17 +17,38 @@ int lightVal;//current light value
 
 unsigned long lastDelay = 0;//stores last time the LCD was displayed
 
+//variables used to average out readings
+const int numReadings = 100;
+int readings[numReadings];//array to store readings of the photoresistor
+int readingIndex = 0;//index of the reading in the array
+int sum = 0;
+
+
 void setup(){
   Serial.begin(9600);
   pinMode(piezo, OUTPUT);//set piezo pin as a output
   lcd.begin(16, 2);//initialize LCD, 16 columns and 2 rows
   digitalWrite(LCDBacklight, LOW);//set LCD backlight to an off state
   lightCal = analogRead(sensorPin);
+
+  for(int i = 0; i < numReadings; i++){
+    readings[i] = 0;//initialize all elements in array to 0
+  }
 }
 
 void loop(){
   lightVal = analogRead(sensorPin);
   unsigned long currentMillis = millis();
+
+  sum -= readings[readingIndex];//subtract last reading to the sum
+  readings[readingIndex] = lightVal;
+  sum += readings[readingIndex];//add the current reading to the sum
+  readingIndex++;
+  if(readingIndex >= numReadings){
+    readingIndex = 0;
+  }
+  lightCal = sum/numReadings;//set calibrated value to the average of the readings
+
 
   //print out values to serial monitor
   Serial.print("Val:");
