@@ -1,5 +1,5 @@
-# Tip Jar
-A 3d printed tip jar using an Arduino nano that is threaded on a jar with a 10cm lip.
+# Money Jar
+A 3d printed coin/tip jar using an Arduino nano that is threaded on a jar with a 10cm lip.
 
 It plays a tune when a coin is dropped in the jar, and displays a message on a 16x2 LCD display. 
 
